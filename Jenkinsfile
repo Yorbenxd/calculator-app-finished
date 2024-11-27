@@ -31,7 +31,7 @@ pipeline {
         stage('Create bundle'){
             steps {
                 sh 'mkdir -p bundle'
-                sh 'cp -r .docker-ignore .gitignore Dockerfile Jenkinsfile docker-compose.yml package.json readme.md tests'
+                sh 'cp -r .dockerignore .gitignore Dockerfile Jenkinsfile docker-compose.yml package.json README.md tests'
                 sh 'zip -r bundle.zip bundle'
             }
         }
