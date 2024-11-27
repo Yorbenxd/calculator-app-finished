@@ -43,7 +43,7 @@ pipeline {
                 sh "echo 'pipeline poging faalt op ${date}' >> /var/jenkins_home/jenkinserrorlog"
             }
         }
-        succes{
+        success{
             archiveArtifacts artifacts: 'bundle.zip', fingerprint: true
         }
     }
