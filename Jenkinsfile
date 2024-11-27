@@ -36,4 +36,18 @@ pipeline {
             }
         }
     }
+    post {
+        failure {
+            script{
+                def date = new Date().format("yyyy-MM-dd HH:mm")
+                sh "echo 'pipeline poging faalt op ${date}' >> /var/jenkins_home/jenkinserrorlog"
+            }
+        }
+        succes{
+            archiveArtifacts artifacts: 'bundle.zip', fingerprint: true
+        }
+    }
+    triggers {
+        cron('H 14 * * 5')
+    }
 }
