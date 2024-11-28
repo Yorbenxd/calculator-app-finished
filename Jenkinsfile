@@ -51,6 +51,8 @@ pipeline {
         }
         success{
             archiveArtifacts artifacts: 'bundle.zip', fingerprint: true
+	    sh 'rm -rf *'
+            sh 'rm -rf .[!.]* ..?*'
         }
     }
     triggers {
