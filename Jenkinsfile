@@ -4,17 +4,23 @@ pipeline {
         nodejs 'TINnode-devops'
     }
     stages {
-        stage('opdracht 5') {
+		stage('opdracht 5') {
             steps {
                 echo "good luck..."
+            }
+        }
+		stage('pre cleanup'){
+            steps{
+                sh 'rm -rf *'
+                sh 'rm -rf .[!.]* ..?*'
             }
         }
         stage('Fetching Source'){
             steps{
                 script{
-                    // Haal de code uit de git repo binnen
-                    git branch: 'main', credentialsId:'', url: 'https://github.com/Yorbenxd/calculator-app-finished'
-                }
+                    git branch: 'main', credentialsId:'GithubAssignment5', url: 'git@github.com:Yorbenxd/calculator-app-finished'
+					sh 'ls -lah'
+				}
             }
         }
         stage('install dependencies'){
@@ -30,8 +36,8 @@ pipeline {
         }
         stage('Create bundle'){
             steps {
-                sh 'mkdir -p bundle'
-                sh 'cp -r .dockerignore .gitignore Dockerfile Jenkinsfile docker-compose.yml package.json README.md tests'
+                sh 'mkdir bundle'
+                sh 'mv app.js Dockerfile package-lock.json routes.js docker-compose.yml package.json public server.js bundle'
                 sh 'zip -r bundle.zip bundle'
             }
         }
