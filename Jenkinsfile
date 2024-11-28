@@ -4,12 +4,12 @@ pipeline {
         nodejs 'TINnode-devops'
     }
     stages {
-		stage('opdracht 5') {
+	stage('opdracht 5') {
             steps {
                 echo "good luck..."
             }
         }
-		stage('pre cleanup'){
+	stage('pre cleanup'){
             steps{
                 sh 'rm -rf *'
                 sh 'rm -rf .[!.]* ..?*'
@@ -19,8 +19,8 @@ pipeline {
             steps{
                 script{
                     git branch: 'main', credentialsId:'GithubAssignment5', url: 'git@github.com:Yorbenxd/calculator-app-finished'
-					sh 'ls -lah'
-				}
+		    sh 'ls -lah'
+		}
             }
         }
         stage('install dependencies'){
